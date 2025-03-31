@@ -1,0 +1,92 @@
+/* Enhanced styles for the "We ignite" tagline */
+.tagline-enhanced {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 2.5rem 0;
+  letter-spacing: 0.01em;
+}
+
+/* On mobile, use column layout */
+@media (max-width: 767px) {
+  .tagline-enhanced {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 4rem;
+    /* Keep the same font size as desktop */
+    font-size: 1.75rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+}
+
+/* On desktop, use inline layout */
+@media (min-width: 768px) {
+  .tagline-enhanced {
+    margin-top: 4rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+  }
+}
+
+/* Alternating animation for ignite and fire icon - 3 seconds interval with delay */
+.fire-icon {
+  opacity: 0;
+  animation: fadeOutIn 7s infinite;
+  animation-delay: 3.5s;
+}
+
+.ignite-text {
+  opacity: 1;
+  animation: fadeOutIn 7s infinite;
+}
+
+@keyframes fadeOutIn {
+  0%, 40% {
+    opacity: 1;
+  }
+  45%, 47% {
+    opacity: 0;
+  }
+  50%, 90% {
+    opacity: 0;
+  }
+  95%, 100% {
+    opacity: 1;
+  }
+}
+
+/* Scroll reveal animation for features */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  visibility: hidden;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+/* Animated underline for key phrases */
+.animated-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  opacity: 0.3;
+}
