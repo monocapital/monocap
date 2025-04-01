@@ -7,6 +7,7 @@ import RoundButton from "@/components/RoundButton";
 import SuccessMetrics from "@/components/SuccessMetrics";
 import CircularFlow from "@/components/CircularFlow";
 import PortfolioButton from "@/components/PortfolioButton";
+import Link from "next/link"; // Import Link for navigation
 import "./about-enhancements.css"; // Import our enhancements CSS
 import "../mobile-text.css"; // Make sure we import the mobile text CSS
 
@@ -207,6 +208,12 @@ export default function About() {
             <SuccessMetrics />
           </div>
 
+          {/* Why Us Button - Moved to bottom of page */}
+          <div style={{ opacity: 1, transform: "none" }} className="mt-20 mb-16 flex justify-center">
+            <Link href="/why-us" className="inline-flex items-center justify-center rounded-full border border-primary bg-transparent py-3 px-6 text-sm font-medium transition-colors duration-300 hover:bg-black hover:text-white">
+              Why Us
+            </Link>
+          </div>
         </section>
 
         {/* Back Button - Hidden on mobile */}
