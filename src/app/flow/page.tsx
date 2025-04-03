@@ -256,6 +256,13 @@ export default function Flow() {
             <div className="mt-24 flex justify-center">
               <ApplyButton />
             </div>
+
+            {/* Why Us Button */}
+            <div className="mt-6 flex justify-center">
+              <Link href="/why-us" className="inline-flex items-center justify-center rounded-full border border-primary bg-transparent py-3 px-6 text-sm font-medium transition-colors duration-300 hover:bg-black hover:text-white">
+                Why Us
+              </Link>
+            </div>
           </div>
         </section>
 

@@ -5,8 +5,26 @@ import { useState, useRef, useEffect } from "react";
 export default function AnimatedTransformationSlider() {
   // Initial slider position set to 0 (before state)
   const [sliderPosition, setSliderPosition] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
+
+  // Check for mobile on mount and window resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   // Handle mouse and touch interactions
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -87,7 +105,7 @@ export default function AnimatedTransformationSlider() {
   return (
     <div
       ref={containerRef}
-      className="slider-container max-w-xl mx-auto"
+      className={`slider-container max-w-xl mx-auto ${isMobile ? 'mobile-slider' : ''}`}
       onClick={handleSliderClick}
     >
       {/* Fixed position content columns */}
@@ -229,43 +247,24 @@ export default function AnimatedTransformationSlider() {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Draggable indicator on the divider */}
+          {/* Draggable indicator on the divider - made smaller on mobile */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md border border-gray-200 flex items-center justify-center cursor-grab"
+            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${isMobile ? 'w-6 h-6' : 'w-8 h-8'} bg-white rounded-full shadow-md border border-gray-200 flex items-center justify-center cursor-grab`}
             onMouseDown={handleMouseDown}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <svg width="12" height="12" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+            <svg width={isMobile ? "10" : "12"} height={isMobile ? "10" : "12"} viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 1h14M0 7h14M0 13h14" stroke="#555" strokeWidth="1.5" />
             </svg>
           </div>
         </div>
       </div>
 
-      {/* Slider Control */}
-      <div
-        className="slider-control mt-6"
-        onClick={handleSliderClick}
-      >
-        <div
-          className="slider-progress"
-          style={{ width: `${sliderPosition}%` }}
-        ></div>
-        <div
-          className="slider-handle"
-          style={{ left: `${sliderPosition}%` }}
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        ></div>
-      </div>
-
       {/* Help text */}
       <div className="text-center text-gray-400 text-xs mt-2">
-        Drag the divider or click anywhere to compare
+        Drag the divider to compare
       </div>
     </div>
   );

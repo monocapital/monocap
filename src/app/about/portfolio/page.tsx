@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Header from "@/components/Header";
 import RoundButton from "@/components/RoundButton";
+import Link from "next/link"; // Import Link for navigation
 import "./underline-animation.css"; // Import our animated underline CSS
 import "./dropdown.css"; // Import dropdown animation CSS
 
@@ -180,6 +181,13 @@ export default function Portfolio() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Why Us Button */}
+          <div className="mt-16 flex justify-center">
+            <Link href="/why-us" className="inline-flex items-center justify-center rounded-full border border-primary bg-transparent py-3 px-6 text-sm font-medium transition-colors duration-300 hover:bg-black hover:text-white">
+              Why Us
+            </Link>
           </div>
         </section>
 

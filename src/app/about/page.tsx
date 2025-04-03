@@ -11,6 +11,9 @@ import Link from "next/link"; // Import Link for navigation
 import "./about-enhancements.css"; // Import our enhancements CSS
 import "../mobile-text.css"; // Make sure we import the mobile text CSS
 
+// Define the words for typewriter effect
+const typewriterWords = ["ignite", "spark", "fuel", "surge", "light", "rouse"];
+
 export default function About() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [optionSelected, setOptionSelected] = useState<string | null>(null);
@@ -20,6 +23,47 @@ export default function About() {
   // Refs for scroll reveal elements
   const featuresRef = useRef<HTMLDivElement>(null);
   const [featuresVisible, setFeaturesVisible] = useState(false);
+
+  const [typewriterIndex, setTypewriterIndex] = useState(0);
+  const [typewriterText, setTypewriterText] = useState(typewriterWords[0]);
+  const [isTyping, setIsTyping] = useState(true);
+
+  // Typewriter animation effect
+  useEffect(() => {
+    const typeDelay = 200; // Delay between typing each character
+    const eraseDelay = 100; // Delay between erasing each character
+    const wordDelay = 2000; // How long to pause at complete word
+
+    if (isTyping) {
+      // Typing animation
+      if (typewriterText.length < typewriterWords[typewriterIndex].length) {
+        const timeout = setTimeout(() => {
+          setTypewriterText(typewriterWords[typewriterIndex].substring(0, typewriterText.length + 1));
+        }, typeDelay);
+        return () => clearTimeout(timeout);
+      } else {
+        // Word complete, pause before erasing
+        const timeout = setTimeout(() => {
+          setIsTyping(false);
+        }, wordDelay);
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      // Erasing animation
+      if (typewriterText.length > 0) {
+        const timeout = setTimeout(() => {
+          setTypewriterText(typewriterText.substring(0, typewriterText.length - 1));
+        }, eraseDelay);
+        return () => clearTimeout(timeout);
+      } else {
+        // Word erased, move to next word
+        const nextIndex = (typewriterIndex + 1) % typewriterWords.length;
+        setTypewriterIndex(nextIndex);
+        setIsTyping(true);
+        return undefined;
+      }
+    }
+  }, [typewriterText, typewriterIndex, isTyping]);
 
   // Function to check if element is in viewport
   const isInViewport = (element: HTMLElement | null): boolean => {
@@ -123,25 +167,14 @@ export default function About() {
             </div>
           </div>
 
-          {/* Enhanced Ignite Text - With alternating fire icon and text */}
+          {/* Enhanced Typewriter Animation Text */}
           <div style={{ opacity: 1, transform: "none" }}>
             <p className="tagline-enhanced mt-28 text-center px-4 md:px-0 ignite-container">
               <span className="mobile-wrap-text">We</span>
               <span className="relative mx-1 mobile-nowrap">
                 <span className="relative z-10">
-                  <span className="ignite-text">ignite</span>
-                  <Image
-                    src="/fire-icon.png"
-                    alt="fire"
-                    width={24}
-                    height={24}
-                    priority={true}
-                    loading="eager"
-                    fetchPriority="high"
-                    sizes="24px"
-                    quality={100}
-                    className="fire-icon absolute -top-0 left-1/2 transform -translate-x-1/2 z-0"
-                  />
+                  <span className="typewriter-text">{typewriterText}</span>
+                  <span className="typewriter-cursor">|</span>
                 </span>
               </span>
               <span className="mobile-wrap-text last">visionary leaders to forge legendary business legacies</span>

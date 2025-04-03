@@ -15,9 +15,15 @@
     align-items: center;
     text-align: center;
     margin-top: 4rem;
-    /* Keep the same font size as desktop */
     font-size: 1.75rem;
     line-height: 1.5;
+    letter-spacing: 0.01em; /* Make sure this matches desktop */
+  }
+
+  /* Ensure consistent letter spacing for all elements */
+  .tagline-enhanced .mobile-nowrap,
+  .tagline-enhanced .typewriter-text,
+  .tagline-enhanced .mobile-wrap-text {
     letter-spacing: 0.01em;
   }
 }
@@ -33,31 +39,24 @@
   }
 }
 
-/* Alternating animation for ignite and fire icon - 3 seconds interval with delay */
-.fire-icon {
-  opacity: 0;
-  animation: fadeOutIn 7s infinite;
-  animation-delay: 3.5s;
+/* Typewriter animation styles */
+.typewriter-text {
+  display: inline-block;
+  min-width: 2ch;
+  position: relative;
+  color: #000;
 }
 
-.ignite-text {
-  opacity: 1;
-  animation: fadeOutIn 7s infinite;
+.typewriter-cursor {
+  display: inline-block;
+  color: #000;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
 }
 
-@keyframes fadeOutIn {
-  0%, 40% {
-    opacity: 1;
-  }
-  45%, 47% {
-    opacity: 0;
-  }
-  50%, 90% {
-    opacity: 0;
-  }
-  95%, 100% {
-    opacity: 1;
-  }
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Scroll reveal animation for features */

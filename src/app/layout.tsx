@@ -5,6 +5,8 @@ import "./about/underline-animation.css";
 import "./about/success-metrics.css"; // This line is already present
 import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer"; // Import Footer component
+import ClientBody from "./ClientBody";
+import MobileNoticePopup from "@/components/MobileNoticePopup";
 
 export const metadata: Metadata = {
   title: "Mono Capital",
@@ -21,8 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        {children}
+      <body className="overflow-x-hidden text-sm" suppressHydrationWarning>
+        <ClientBody>{children}</ClientBody>
+        <MobileNoticePopup />
         <Footer /> {/* Add Footer to all pages */}
         <CustomCursor />
       </body>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import RoundButton from "@/components/RoundButton";
 import AnimatedTransformationSlider from "@/components/AnimatedTransformationSlider";
+import MonoCapitalAnimation from "@/components/MonoCapitalAnimation";
 import "./why-us.css";
 
 export default function WhyUs() {
@@ -20,15 +21,20 @@ export default function WhyUs() {
             </RoundButton>
           </div>
 
-          {/* Main Headline */}
-          <div className="mt-16 mb-14">
-            <h1 className="text-2xl md:text-3xl font-medium">
+          {/* Mono Capital Animation - moved above heading */}
+          <div className="mt-16 mb-0">
+            <MonoCapitalAnimation />
+          </div>
+
+          {/* Main Headline - updated to match Mono Capital size */}
+          <div className="mt-16 mb-12">
+            <h1 className="text-2xl md:text-3xl font-semibold text-black">
               Beyond Capital
             </h1>
           </div>
 
           {/* Animated Transformation Slider */}
-          <div className="mt-10 mb-20">
+          <div className="mt-0 mb-20">
             <AnimatedTransformationSlider />
           </div>
 
