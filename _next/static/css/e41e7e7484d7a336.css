@@ -1,1 +1,0 @@
-@keyframes underlineMove{0%{background-position:-200px 0}to{background-position:200px 0}}.animated-underline{position:relative;display:inline-block}.animated-underline:after{content:"";position:absolute;bottom:-2px;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,black,transparent);background-size:200px 1px;animation:underlineMove 3s linear infinite}
