@@ -2,9 +2,10 @@
   remote_images = ["https://source.unsplash.com/.*", "https://images.unsplash.com/.*", "https://ext.same-assets.com/.*", "https://ugc.same-assets.com/.*", "https://media.decentralized-content.com/.*"]
 
 [build]
-  command = "bun run build"
+  command = "npm run build"
   publish = "out"
 
 [build.environment]
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
-  NPM_FLAGS = "--no-optional"
+  NPM_FLAGS = "--legacy-peer-deps --no-optional"
+  NODE_VERSION = "18.18.2"
