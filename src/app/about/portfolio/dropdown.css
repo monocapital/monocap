@@ -1,0 +1,37 @@
+/* Dropdown animation for portfolio sections */
+.dropdown-section {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease-in-out, opacity 0.8s ease-in-out, padding 0.8s ease-in-out;
+}
+
+.dropdown-section.open {
+  max-height: 1000px; /* Adjust based on content size */
+  opacity: 1;
+  padding: 1rem 0;
+}
+
+.dropdown-header {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-header:hover {
+  transform: scale(1.05);
+}
+
+.dropdown-header::after {
+  content: '⌄';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.dropdown-header.open::after {
+  transform: translateY(-50%) rotate(180deg);
+}
